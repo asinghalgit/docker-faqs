@@ -1,6 +1,6 @@
 # Docker-FAQs
 
-##### References
+#####  References
 https://www.oreilly.com/content/docker-networking-service-discovery/
 
 https://dockerlabs.collabnix.com/networking/A2-bridge-networking.html
@@ -11,79 +11,79 @@ https://www.youtube.com/watch?v=MGBAXJnoqbA
 
 https://monkelite.com/introduction-to-docker-networking/
 
-#####What will happen if we remove the docker image but the container exists for the same image. Container’ status is stopped though.
+#####  What will happen if we remove the docker image but the container exists for the same image. Container’ status is stopped though.
 
 It will fail saying as follows:
 
-![screenshot1](screenshot1.png)
+![screenshot1](./screenshot1.png)
 
-#####What is the command to remove docker image
+#####  What is the command to remove docker image
 
 docker rmi <image-name>
 
-#####What is the command to list all docker containers
+#####  What is the command to list all docker containers
 
 docker ps -a
 
-#####What is the command to list running containers
+#####  What is the command to list running containers
 
 docker ps
 
-#####What is the command to remove docker container
+#####  What is the command to remove docker container
 
 docker rm <container-id>
 
-#####What is the command to remove all stopped docker containers in one go
+#####  What is the command to remove all stopped docker containers in one go
 
 docker container prune is the command to remove all stopped containers. Command will not affect running containers.
 
-#####What is the command to clear all dangling images and stopped container in one go
+#####  What is the command to clear all dangling images and stopped container in one go
 
 docker system prune
 
 ![screenshot2](screenshot2.png)
 
-#####What is the difference between docker run hello-world vs docker pull hello-world
+#####  What is the difference between docker run hello-world vs docker pull hello-world
 
 docker pull will just download the image and do not run it.
 
-#####What is the command to view list of docker images
+#####  What is the command to view list of docker images
 
 docker images
 
-#####What will happen if we remove running docker container using docker rm command
+#####  What will happen if we remove running docker container using docker rm command
 
 Command will fail saying that first stop the container and then remove it.
 
-#####What is the command to run the docker container in background?
+#####  What is the command to run the docker container in background?
 
 docker run -d nginx
 
-#####What is the command to stop running docker container
+#####  What is the command to stop running docker container
 
 docker stop <container-id>
 
-#####Which version of docker image will be downloaded if not mentioned explicitly
+#####  Which version of docker image will be downloaded if not mentioned explicitly
 
 latest will be pulled (marked with latest tag in docker hub)
 
-#####How to pull a specific version of docker image, say ubuntu?
+#####  How to pull a specific version of docker image, say ubuntu?
 
 docker pull ubuntu:16.04
 
 ![screenshot3](screenshot3.png)
 
-#####What is the command to rename a docker image
+##### What is the command to rename a docker image
 
 It can be done using tagging as follows:
 
 ![screenshot4](screenshot4.png)
 
-#####What is the naming convention for Docker file name
+##### What is the naming convention for Docker file name
 
 Dockerfile
 
-#####How to write commands in Dockerfile
+##### How to write commands in Dockerfile
 
 ![screenshot5](screenshot5.png)
 
@@ -91,7 +91,7 @@ Dockerfile
 
 ![screenshot7](screenshot7.png)
     
-#####What is the difference between ENTRYPOINT and CMD instruction in Dockerfile
+##### What is the difference between ENTRYPOINT and CMD instruction in Dockerfile
 
 Docker has a default entrypoint which is /bin/sh -c but does not have a default command.
 When you run docker like this: docker run -i -t ubuntu bash The entrypoint is the default /bin/sh -c, the image is ubuntu and the command is bash.
@@ -149,7 +149,7 @@ docker run -it test bash
 root@e8bb7249b843:/#
 
 
-#####What is the command to get low level details of docker container in json format
+##### What is the command to get low level details of docker container in json format
 
 docker inspect <container-id>
 
@@ -373,11 +373,11 @@ $ docker inspect 81eb9b5dfdbc
 [node1] (local) root@192.168.0.23 /
 $
 
-#####How to mount data volume
+##### How to mount data volume
 
 Refer link - https://rominirani.com/docker-tutorial-series-part-7-data-volumes-93073a1b5b72
 
-#####What the following command will do
+##### What the following command will do
 
 docker run -it -v /data --name container1 busybox
 
@@ -389,7 +389,7 @@ Inspect the container and see mount details
 You will notice that container data volume is mapped to the host machine folder listed in docker inspect command output.
 So any file will be persisted this way
 
-#####What happens if you launch another container with the same /data volume. Is the file still there or does each container get its own file system?
+##### What happens if you launch another container with the same /data volume. Is the file still there or does each container get its own file system?
 
 
 File will not be there as follows:
@@ -402,7 +402,7 @@ It will create different folder in docker:
 
 /var/lib/docker/volumes/38d2c689518872c141488ba3f5bc803af86e695186b6d497ef2ac9ef5c568602/_data
 
-#####How to map host folder to container folder so that data can be reflected back:
+##### How to map host folder to container folder so that data can be reflected back:
 
 To mount a host volume while launching a Docker container, we have to use the following format for volume -v :
 -v HostFolder:ContainerVolumeName
@@ -413,18 +413,18 @@ To mount a host volume while launching a Docker container, we have to use the fo
 
 ![screenshot11](screenshot11.png)
 
-#####What is the command to remove all unused containers, volumes, networks and images
+##### What is the command to remove all unused containers, volumes, networks and images
 
 docker system prune -a --volumes
 
-#####How to share volume among multiple containers
+##### How to share volume among multiple containers
 
 ![screenshot12](screenshot12.png)
 
 ![screenshot13](screenshot13.png)
 
 
-#####What is the command to check all docker volumes
+##### What is the command to check all docker volumes
 
 ![screenshot14](screenshot14.png)
 
@@ -432,7 +432,7 @@ docker system prune -a --volumes
 
 ![screenshot16](screenshot16.png)
 
-#####How to expose and publish a port
+##### How to expose and publish a port
 Opening a connection from outside world to a docker container happens in two steps:
 
 Exposing port
@@ -446,15 +446,15 @@ To publish a port, run the container with -p <host-port>:<container-port>
 
 ![screenshot17](screenshot17.png)
 
-#####What is the command to get host port to which container port is mapped in case host port is not explicitly provided
+##### What is the command to get host port to which container port is mapped in case host port is not explicitly provided
 
 docker port <container id>
 
-#####What is the purpose of docker compose
+##### What is the purpose of docker compose
 
 docker-compose is designed to simplify running multi-container applications to using a single command.
 
-#####Is there any command to search for an image
+##### Is there any command to search for an image
 
 docker search <image-name> but this search will be made in docker hub registry.
 
@@ -462,7 +462,7 @@ For example - docker search hello-world
 
 ![screenshot18](screenshot18.png)
 
-#####How to check docker container logs
+##### How to check docker container logs
 
 To check docker logs just use the following command:
 docker logs --help
@@ -482,7 +482,7 @@ Options:
 Some example:
 docker logs --since=1h <container_id>
 
-#####What is the benefit of using docker attach command?
+##### What is the benefit of using docker attach command?
 
 When containers are run with the interactive option, you can connect to the container and enter commands as if you are on the terminal:
 $ docker run -itd --name busybox busybox
@@ -496,41 +496,41 @@ The attach option also allows multiple connections to view the same container an
 
 Docker attach command is used to attach our terminal to a running container to control I/O operations.
 
-#####Why to run containers in interactive mode?
+##### Why to run containers in interactive mode?
 
 Docker allows you to run a container in interactive mode. This means you can execute commands inside the container while it is still running.
 
 Always use -it option if you want to run docker containers in interactive mode.
 
-#####Give some examples of docker-compose
+##### Give some examples of docker-compose
 
 https://springframework.guru/manage-docker-containers-with-docker-compose/
 https://towardsdatascience.com/docker-compose-44a8112c850a
 
-#####What is the purpose of using docker compose
+##### What is the purpose of using docker compose
 
 
-#####Which file is used to write docker compose configuration
+##### Which file is used to write docker compose configuration
 
 Docker-compose.yml
 
-#####Can we use custom file name instead of docker-compose.yml
+##### Can we use custom file name instead of docker-compose.yml
 
 Yes 
 
-#####Which 3 are main tags used in docker-compose file
+##### Which 3 are main tags used in docker-compose file
 
 ![screenshot19](screenshot19.png)
 
-#####What is the syntax of writing services configuration:
+##### What is the syntax of writing services configuration:
 
 ![screenshot20](screenshot20.png)
 
-#####What do we mean by volumes and networks?
+##### What do we mean by volumes and networks?
 
 ![screenshot21](screenshot21.png)
 
-#####Give a good example of using docker-compose yml file
+##### Give a good example of using docker-compose yml file
 
 https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.1/spring-cloud-dataflow-server/docker-compose.yml
 
@@ -538,19 +538,19 @@ https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.1/spri
 ![screenshot23](screenshot23.png)
 ![screenshot24](screenshot24.png)
 
-#####What is the difference between docker-compose up and docker-compose start?
+##### What is the difference between docker-compose up and docker-compose start?
 
 ![screenshot25](screenshot25.png)
 
-#####Can I use json instead of yaml for my Compose file?
+##### Can I use json instead of yaml for my Compose file?
 
 ![screenshot26](screenshot26.png)
 
-#####What is the difference between docker-compose stop and docker-compose down?
+##### What is the difference between docker-compose stop and docker-compose down?
 
 ![screenshot27](screenshot27.png)
 
-#####Explain docker network?
+##### Explain docker network?
 
 ![screenshot28](screenshot28.png)
 
@@ -570,13 +570,13 @@ host mode
 
 none mode
 
-##### What is the command to check existing docker networks?
+#####  What is the command to check existing docker networks?
 
 `docker network` command will display all the options.
 
 ![screenshot29](screenshot29.png)
 
-##### which is the default docker network for containers?
+#####  which is the default docker network for containers?
 
 bridge network
 
@@ -602,7 +602,7 @@ You can also inspect docker conatiner and check its network settings as follows:
 
 ![screenshot36](screenshot36.png)
 
-##### what happens when any docker container is assigned to `none` network?
+#####  what happens when any docker container is assigned to `none` network?
 
 ![screenshot37](screenshot37.png)
 
