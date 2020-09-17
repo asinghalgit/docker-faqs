@@ -41,7 +41,7 @@ docker container prune is the command to remove all stopped containers. Command 
 
 docker system prune
 
-![screenshot2](screenshot2.png)
+![screenshot2](screenshot2.PNG)
 
 #####  What is the difference between docker run hello-world vs docker pull hello-world
 
@@ -71,13 +71,13 @@ latest will be pulled (marked with latest tag in docker hub)
 
 docker pull ubuntu:16.04
 
-![screenshot3](screenshot3.png)
+![screenshot3](screenshot3.PNG)
 
 ##### What is the command to rename a docker image
 
 It can be done using tagging as follows:
 
-![screenshot4](screenshot4.png)
+![screenshot4](screenshot4.PNG)
 
 ##### What is the naming convention for Docker file name
 
@@ -85,11 +85,11 @@ Dockerfile
 
 ##### How to write commands in Dockerfile
 
-![screenshot5](screenshot5.png)
+![screenshot5](screenshot5.PNG)
 
-![screenshot6](screenshot6.png)
+![screenshot6](screenshot6.PNG)
 
-![screenshot7](screenshot7.png)
+![screenshot7](screenshot7.PNG)
     
 ##### What is the difference between ENTRYPOINT and CMD instruction in Dockerfile
 
@@ -394,7 +394,7 @@ So any file will be persisted this way
 
 File will not be there as follows:
 
-![screenshot8](screenshot8.png)
+![screenshot8](screenshot8.PNG)
 
 It will create different folder in docker:
 
@@ -407,11 +407,11 @@ It will create different folder in docker:
 To mount a host volume while launching a Docker container, we have to use the following format for volume -v :
 -v HostFolder:ContainerVolumeName
 
-![screenshot9](screenshot9.png)
+![screenshot9](screenshot9.PNG)
 
-![screenshot10](screenshot10.png)
+![screenshot10](screenshot10.PNG)
 
-![screenshot11](screenshot11.png)
+![screenshot11](screenshot11.PNG)
 
 ##### What is the command to remove all unused containers, volumes, networks and images
 
@@ -419,18 +419,18 @@ docker system prune -a --volumes
 
 ##### How to share volume among multiple containers
 
-![screenshot12](screenshot12.png)
+![screenshot12](screenshot12.PNG)
 
-![screenshot13](screenshot13.png)
+![screenshot13](screenshot13.PNG)
 
 
 ##### What is the command to check all docker volumes
 
-![screenshot14](screenshot14.png)
+![screenshot14](screenshot14.PNG)
 
-![screenshot15](screenshot15.png)
+![screenshot15](screenshot15.PNG)
 
-![screenshot16](screenshot16.png)
+![screenshot16](screenshot16.PNG)
 
 ##### How to expose and publish a port
 Opening a connection from outside world to a docker container happens in two steps:
@@ -444,7 +444,7 @@ Publishing a port means that Docker will map containers ports to host (your mach
 To expose a port, add line EXPOSE <port> in your Dockerfile
 To publish a port, run the container with -p <host-port>:<container-port>
 
-![screenshot17](screenshot17.png)
+![screenshot17](screenshot17.PNG)
 
 ##### What is the command to get host port to which container port is mapped in case host port is not explicitly provided
 
@@ -460,7 +460,7 @@ docker search <image-name> but this search will be made in docker hub registry.
 
 For example - docker search hello-world
 
-![screenshot18](screenshot18.png)
+![screenshot18](screenshot18.PNG)
 
 ##### How to check docker container logs
 
@@ -520,39 +520,39 @@ Yes
 
 ##### Which 3 are main tags used in docker-compose file
 
-![screenshot19](screenshot19.png)
+![screenshot19](screenshot19.PNG)
 
 ##### What is the syntax of writing services configuration:
 
-![screenshot20](screenshot20.png)
+![screenshot20](screenshot20.PNG)
 
 ##### What do we mean by volumes and networks?
 
-![screenshot21](screenshot21.png)
+![screenshot21](screenshot21.PNG)
 
 ##### Give a good example of using docker-compose yml file
 
 https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.1/spring-cloud-dataflow-server/docker-compose.yml
 
-![screenshot22](screenshot22.png)
-![screenshot23](screenshot23.png)
-![screenshot24](screenshot24.png)
+![screenshot22](screenshot22.PNG)
+![screenshot23](screenshot23.PNG)
+![screenshot24](screenshot24.PNG)
 
 ##### What is the difference between docker-compose up and docker-compose start?
 
-![screenshot25](screenshot25.png)
+![screenshot25](screenshot25.PNG)
 
 ##### Can I use json instead of yaml for my Compose file?
 
-![screenshot26](screenshot26.png)
+![screenshot26](screenshot26.PNG)
 
 ##### What is the difference between docker-compose stop and docker-compose down?
 
-![screenshot27](screenshot27.png)
+![screenshot27](screenshot27.PNG)
 
 ##### Explain docker network?
 
-![screenshot28](screenshot28.png)
+![screenshot28](screenshot28.PNG)
 
 The relationship between a host and containers is 1:N. This means that one host typically has several containers running on it. For example, Facebook reports thatdepending on how beefy the machine isit sees on average some 10 to 40 containers per host running. And heres another data point: at Mesosphere, we found in various load tests on bare metal that not more than around 250 containers per host would be possible.
 
@@ -574,37 +574,37 @@ none mode
 
 `docker network` command will display all the options.
 
-![screenshot29](screenshot29.png)
+![screenshot29](screenshot29.PNG)
 
 #####  which is the default docker network for containers?
 
 bridge network
 
-![screenshot30](screenshot30.png)
+![screenshot30](screenshot30.PNG)
 
-![screenshot38](screenshot38.png)
+![screenshot38](screenshot38.PNG)
 
 You can inspect bridge network by executing following command:
 
-![screenshot31](screenshot31.png)
+![screenshot31](screenshot31.PNG)
 
 When we launch any docker container without explicitly mentioning any network then container is assigned `bridge` network as follows:
 
-![screenshot32](screenshot32.png)
+![screenshot32](screenshot32.PNG)
 
-![screenshot33](screenshot33.png)
+![screenshot33](screenshot33.PNG)
 
-![screenshot34](screenshot34.png)
+![screenshot34](screenshot34.PNG)
 
 You can also inspect docker conatiner and check its network settings as follows:
 
-![screenshot35](screenshot35.png)
+![screenshot35](screenshot35.PNG)
 
-![screenshot36](screenshot36.png)
+![screenshot36](screenshot36.PNG)
 
 #####  what happens when any docker container is assigned to `none` network?
 
-![screenshot37](screenshot37.png)
+![screenshot37](screenshot37.PNG)
 
 
 
