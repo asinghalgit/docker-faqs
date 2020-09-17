@@ -15,7 +15,7 @@ https://monkelite.com/introduction-to-docker-networking/
 
 It will fail saying as follows:
 
-![screenshot1](./screenshot1.png)
+![screenshot1](./screenshot1.PNG)
 
 #####  What is the command to remove docker image
 
