@@ -602,9 +602,42 @@ You can also inspect docker conatiner and check its network settings as follows:
 
 ![screenshot36](screenshot36.PNG)
 
+1. Container assigned to bridge network contains two network interfaces. A loopback interface and a private network interface.
+2. The loopback interface is the same as one of the closed containers of 127.0.0.1 and it is used for internal applications and can’t be connected to the outside world.
+3. The private network interface is connected to the bridge network.
+4. Containers within same bridge network can connect to each other via loopback interface.
+5. Containers can connect to outside world via private network interface.  
+6. Containers from different bridge networks can’t connect with each other by default. But we can manually connect a container to another bridge network.
+7. A bridge network is most suitable where you want to set up a relatively small network on a single host.
+
 #####  what happens when any docker container is assigned to `none` network?
 
 ![screenshot37](screenshot37.PNG)
+
+#####  Explain `none` network in detail?
+
+Actually, the none network adds a container to a container-specific network stack. 
+That container lacks a network interface, so it is totally isolated. 
+This kind of container is called a closed container.
+
+![screenshot39](screenshot39.PNG)
+
+![screenshot40](screenshot40.PNG)
+
+![screenshot41](screenshot41.PNG)
+
+![screenshot42](screenshot42.PNG)
+
+Google public DNS IP which is 8.8.8.8. If we ping this IP from our host machine, as you see, there is no problem to reach Google public DNS.
+If we ping this IP from the closed container, the IP is unreachable. This container is isolated from the outside world.
+
+#####  what is the benefit of using container with none network?
+
+1. It provides the maximum level of network protection because the containers can not be reached from outside the host.
+2. However, this network model won’t be a good choice if the network or Internet connection is required. For example, if the application requires making HTTP requests to the outside world.
+3. This isolated network suites well where the container requires the maximum level of network security and network access is not necessary.  
+
+
 
 
 
