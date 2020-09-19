@@ -19,7 +19,7 @@ It will fail saying as follows:
 
 #####  What is the command to remove docker image
 
-docker rmi <image-name>
+docker rmi \<image-name\>
 
 #####  What is the command to list all docker containers
 
