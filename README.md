@@ -31,11 +31,11 @@ docker ps
 
 #####  What is the command to remove docker container
 
-docker rm <container-id>
+docker rm \<container-id\>
 
 #####  What is the command to remove all stopped docker containers in one go
 
-docker container prune is the command to remove all stopped containers. Command will not affect running containers.
+`docker container prune` is the command to remove all stopped containers. Command will not affect running containers.
 
 #####  What is the command to clear all dangling images and stopped container in one go
 
@@ -43,9 +43,9 @@ docker system prune
 
 ![screenshot2](screenshot2.PNG)
 
-#####  What is the difference between docker run hello-world vs docker pull hello-world
+#####  What is the difference between `docker run hello-world` vs `docker pull hello-world`
 
-docker pull will just download the image and do not run it.
+`docker pull` will just download the image and do not run it.
 
 #####  What is the command to view list of docker images
 
@@ -57,11 +57,11 @@ Command will fail saying that first stop the container and then remove it.
 
 #####  What is the command to run the docker container in background?
 
-docker run -d nginx
+docker run -d \<image-name\>
 
 #####  What is the command to stop running docker container
 
-docker stop <container-id>
+docker stop \<container-id\>
 
 #####  Which version of docker image will be downloaded if not mentioned explicitly
 
@@ -93,24 +93,27 @@ Dockerfile
     
 ##### What is the difference between ENTRYPOINT and CMD instruction in Dockerfile
 
-Docker has a default entrypoint which is /bin/sh -c but does not have a default command.
-When you run docker like this: docker run -i -t ubuntu bash The entrypoint is the default /bin/sh -c, the image is ubuntu and the command is bash.
-The command is run via the entrypoint. i.e., the actual thing that gets executed is /bin/sh -c bash. This allowed Docker to implement RUN quickly by relying on the shell's parser.
-Later on, people asked to be able to customize this, so ENTRYPOINT and --entrypoint were introduced.
-Everything after ubuntu in the example above is the command and is passed to the entrypoint.
+Docker has a default entry point which is `/bin/sh -c` but does not have a default command.
+When you run docker like this: 
+```
+docker run -it ubuntu bash
+``` 
+The entry point is the default `/bin/sh -c`, the image is `ubuntu` and the command is `bash`.
+The command is run via the entry point. i.e., the actual thing that gets executed is `/bin/sh -c bash`.
+Everything after `ubuntu` in the example above is the command and is passed to the entry point.
 
-Another answer from stack overflow
+The `CMD` specifies arguments that will be fed to the `ENTRYPOINT`.
 
-The ENTRYPOINT specifies a command that will always be executed when the container starts.
-The CMD specifies arguments that will be fed to the ENTRYPOINT.
-If you want to make an image dedicated to a specific command you will use ENTRYPOINT ["/path/dedicated_command"]
-Otherwise, if you want to make an image for general purpose, you can leave ENTRYPOINT unspecified and use CMD ["/path/dedicated_command"] as you will be able to override the setting by supplying arguments to docker run.
 For example, if your Dockerfile is:
+```
 FROM debian:wheezy
 ENTRYPOINT ["/bin/ping"]
 CMD ["localhost"]
+```
 
 Running the image without any argument will ping the localhost:
+
+```
 $ docker run -it test
 PING localhost (127.0.0.1): 48 data bytes
 56 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.096 ms
@@ -119,8 +122,11 @@ PING localhost (127.0.0.1): 48 data bytes
 ^C--- localhost ping statistics ---
 3 packets transmitted, 3 packets received, 0% packet loss
 round-trip min/avg/max/stddev = 0.088/0.091/0.096/0.000 ms
+```
 
 Now, running the image with an argument will ping the argument:
+
+```
 $ docker run -it test google.com
 PING google.com (173.194.45.70): 48 data bytes
 56 bytes from 173.194.45.70: icmp_seq=0 ttl=55 time=32.583 ms
@@ -129,35 +135,18 @@ PING google.com (173.194.45.70): 48 data bytes
 ^C--- google.com ping statistics ---
 5 packets transmitted, 3 packets received, 40% packet loss
 round-trip min/avg/max/stddev = 30.327/36.430/46.379/7.095 ms
-
-For comparison, if your Dockerfile is:
-FROM debian:wheezy
-CMD ["/bin/ping", "localhost"]
-
-Running the image without any argument will ping the localhost:
-$ docker run -it test
-PING localhost (127.0.0.1): 48 data bytes
-56 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.076 ms
-56 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.087 ms
-56 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.090 ms
-^C--- localhost ping statistics ---
-3 packets transmitted, 3 packets received, 0% packet loss
-round-trip min/avg/max/stddev = 0.076/0.084/0.090/0.000 ms
-
-But running the image with an argument will run the argument:
-docker run -it test bash
-root@e8bb7249b843:/#
-
+```
 
 ##### What is the command to get low level details of docker container in json format
 
-docker inspect <container-id>
+docker inspect \<container-id\>
 
-docker inspect <container-name>
+docker inspect \<container-name\>
 
 For example -
 
 $ docker inspect 81eb9b5dfdbc
+```
 [
     {
         "Id": "81eb9b5dfdbc965ee0469ecd0eb490cb71d88127c9ef58fbfb77095c4d96d77b",
@@ -370,8 +359,8 @@ $ docker inspect 81eb9b5dfdbc
         }
     }
 ]
-[node1] (local) root@192.168.0.23 /
-$
+```
+
 
 ##### How to mount data volume
 
@@ -379,18 +368,16 @@ Refer link - https://rominirani.com/docker-tutorial-series-part-7-data-volumes-9
 
 ##### What the following command will do
 
-docker run -it -v /data --name container1 busybox
+`docker run -it -v /data --name container1 busybox`
 
-It will launch busybox container with re-named as container1
-Inside the container at the root directory, it will create a data folder.
-Inside data folder, create a blank file
-Exit the container
-Inspect the container and see mount details 
-You will notice that container data volume is mapped to the host machine folder listed in docker inspect command output.
-So any file will be persisted this way
+1. It will launch busybox container with re-named as container1
+2. Inside the container at the root directory, it will create a data folder.
+3. Inside data folder, create a blank file
+4. Exit the container
+5. Inspect the container and see mount details 
+6. You will notice that container data volume is mapped to the host machine folder listed in docker inspect command output. So any file will be persisted this way.
 
-##### What happens if you launch another container with the same /data volume. Is the file still there or does each container get its own file system?
-
+##### What happens if you launch another container with the same `/data` volume. Is the file still there or does each container get its own file system?
 
 File will not be there as follows:
 
@@ -398,14 +385,16 @@ File will not be there as follows:
 
 It will create different folder in docker:
 
+```
 /var/lib/docker/volumes/c8cac6aeff11ddea0cc3e3e2ad352f63adfaf101232fd2140c3023357a587a8c/_data
 
 /var/lib/docker/volumes/38d2c689518872c141488ba3f5bc803af86e695186b6d497ef2ac9ef5c568602/_data
+```
 
 ##### How to map host folder to container folder so that data can be reflected back:
 
 To mount a host volume while launching a Docker container, we have to use the following format for volume -v :
--v HostFolder:ContainerVolumeName
+`-v HostFolder:ContainerVolumeName`
 
 ![screenshot9](screenshot9.PNG)
 
@@ -435,9 +424,8 @@ docker system prune -a --volumes
 ##### How to expose and publish a port
 Opening a connection from outside world to a docker container happens in two steps:
 
-Exposing port
-
-Publishing port
+1. Exposing port
+2. Publishing port
 
 Exposing a container port means that you tell Docker that the container listens to a certain port.
 Publishing a port means that Docker will map containers ports to host (your machine) ports.
@@ -448,7 +436,7 @@ To publish a port, run the container with -p <host-port>:<container-port>
 
 ##### What is the command to get host port to which container port is mapped in case host port is not explicitly provided
 
-docker port <container id>
+docker port \<container id\>
 
 ##### What is the purpose of docker compose
 
@@ -465,7 +453,7 @@ For example - docker search hello-world
 ##### How to check docker container logs
 
 To check docker logs just use the following command:
-docker logs --help
+`docker logs --help`
 
 Usage:  docker logs [OPTIONS] CONTAINER
 
@@ -480,17 +468,20 @@ Options:
   -t, --timestamps     Show timestamps
 
 Some example:
-docker logs --since=1h <container_id>
+docker logs --since=1h \<container_id\>
 
 ##### What is the benefit of using docker attach command?
 
 When containers are run with the interactive option, you can connect to the container and enter commands as if you are on the terminal:
+
+```
 $ docker run -itd --name busybox busybox
 dcaecf3335f9142e8c70a2ae05a386395b49d610be345b3a12d2961fccab1478
 
 $ docker attach busybox
 / # echo hello world
 hello world
+```
 
 The attach option also allows multiple connections to view the same container and see what each is typing.
 
@@ -505,10 +496,8 @@ Always use -it option if you want to run docker containers in interactive mode.
 ##### Give some examples of docker-compose
 
 https://springframework.guru/manage-docker-containers-with-docker-compose/
+
 https://towardsdatascience.com/docker-compose-44a8112c850a
-
-##### What is the purpose of using docker compose
-
 
 ##### Which file is used to write docker compose configuration
 
@@ -636,10 +625,6 @@ If we ping this IP from the closed container, the IP is unreachable. This contai
 1. It provides the maximum level of network protection because the containers can not be reached from outside the host.
 2. However, this network model won’t be a good choice if the network or Internet connection is required. For example, if the application requires making HTTP requests to the outside world.
 3. This isolated network suites well where the container requires the maximum level of network security and network access is not necessary.  
-
-
-
-
 
 
 
