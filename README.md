@@ -361,6 +361,156 @@ $ docker inspect 81eb9b5dfdbc
 ]
 ```
 
+##### How to execute multiple commands in one chain and what are the benefits of doing the same. Explain with example.
+
+Refer link - https://stackoverflow.com/questions/33322103/multiple-froms-what-it-means
+
+![screenshot43](screenshot43.PNG)
+
+##### Given an example of creating simple Dockerfile (spring boot app with one rest end point)
+
+Following are the steps to dockerize spring boot app - 
+
+1. Create spring boot app using spring initializer (https://start.spring.io/)
+2. Create REST URL using Spring web
+3. Build above project and test if rest end is working correctly
+4. Create a file named Dockerfile with content as follows:
+5. Go to root of the spring boot project and build and run docker image via following command:
+
+##### sudo docker build -t spring-boot-docker-app .
+
+##### sudo docker run -p 8085:8085 spring-boot-docker-app
+
+![screenshot44](screenshot44.PNG)
+
+![screenshot45](screenshot45.PNG)
+
+![screenshot46](screenshot46.PNG)
+
+##### What is the difference between ADD and COPY? where to use which instruction?
+
+![screenshot47](screenshot47.PNG)
+
+![screenshot48](screenshot48.PNG)
+
+##### Can we have multiple FROM instruction in single docker file?
+
+Yes, it is possible. Docker offers a capability named multi-stage build.
+
+##### Explain various commands which can be written in Dockerfile.
+
+refer link - https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index
+
+![screenshot49](screenshot49.PNG)
+
+![screenshot50](screenshot50.PNG)
+
+![screenshot51](screenshot51.PNG)
+
+![screenshot52](screenshot52.PNG)
+
+![screenshot53](screenshot53.PNG)
+
+![screenshot54](screenshot54.PNG)
+
+
+##### Which one should be used LABEL or MAINTAINER command in Dockefile?
+
+![screenshot55](screenshot55.PNG)
+
+![screenshot56](screenshot56.PNG)
+
+##### Be default which labels are inherited in docker image?
+
+Labels from base image i.e. from FROM command
+
+##### If we have a label defined in image defined multiple times for same key then which value will be picked?
+
+Most recently value will be picked.
+
+##### What exactly EXPOSE command does in Dockerfile?
+
+![screenshot57](screenshot57.PNG)
+
+##### Is it possible to find out what ports are exposed from the image without running it?
+
+![screenshot59](screenshot59.PNG)
+
+##### ARG or ENV, which one to use in this case?
+
+![screenshot60](screenshot60.PNG)
+
+![screenshot61](screenshot61.PNG)
+
+![screenshot62](screenshot62.PNG)
+
+##### what is the meaning of WORKDIR in Dockerfile?
+
+![screenshot63](screenshot63.PNG)
+
+![screenshot64](screenshot64.PNG)
+
+1. You can think of WORKDIR like a cd inside the container (it affects commands that come later in the Dockerfile, like the RUN command).
+
+2. Since your Dockerfile location on the host machine has nothing to do with the pwd inside the container. 
+You can put the Dockerfile wherever you'd like in your project.
+
+##### what is the concept of STOPSIGNAL command Dockerfile?
+
+![screenshot65](screenshot65.PNG)
+
+![screenshot66](screenshot66.PNG)
+
+##### What is the concept of HEALTHCHECK command in Dockerfile? Explain with an example.
+
+Refer link - https://docs.docker.com/engine/reference/builder/#user
+
+![screenshot67](screenshot67.PNG)
+
+Following screenshot displays REST endpoint which throws exception. Same URL is used in healthcheck.
+
+![screenshot68](screenshot68.PNG) 
+
+![screenshot69](screenshot69.PNG) 
+
+![screenshot70](screenshot70.PNG) 
+
+![screenshot71](screenshot71.PNG) 
+
+![screenshot72](screenshot72.PNG) 
+
+##### Which is the command to inspect size of each layer in created docker image?
+
+docker image history <image-name>
+
+##### Which could be points to optimize docker images?
+
+Refer link - https://medium.com/sciforce/strategies-of-docker-images-optimization-2ca9cc5719b6
+
+![screenshot73](screenshot73.PNG)
+
+![screenshot74](screenshot74.PNG)
+
+![screenshot75](screenshot75.PNG)
+
+![screenshot76](screenshot76.PNG)
+
+Another useful link - https://stackoverflow.com/questions/45594707/what-is-pips-no-cache-dir-good-for
+
+![screenshot77](screenshot77.PNG)
+
+![screenshot78](screenshot78.PNG)
+
+![screenshot79](screenshot79.PNG)
+
+##### How to clean up selected images?
+
+![screenshot79](screenshot79.PNG)
+
+##### What could be the way to reduce docker build time?
+
+![screenshot80](screenshot80.PNG)
+
 
 ##### How to mount data volume
 
