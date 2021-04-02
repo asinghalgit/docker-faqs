@@ -361,6 +361,14 @@ $ docker inspect 81eb9b5dfdbc
 ]
 ```
 
+##### What is the command to get low level details of docker image in json format
+
+docker inspect \<image-name\>
+
+Same command can be used to inspect container or image.
+
+![screenshot83](screenshot83.PNG)
+
 ##### How to execute multiple commands in one chain and what are the benefits of doing the same. Explain with example.
 
 Refer link - https://stackoverflow.com/questions/33322103/multiple-froms-what-it-means
@@ -396,6 +404,11 @@ Following are the steps to dockerize spring boot app -
 ##### Can we have multiple FROM instruction in single docker file?
 
 Yes, it is possible. Docker offers a capability named multi-stage build.
+
+For example:
+
+![screenshot81](screenshot81.PNG)
+
 
 ##### Explain various commands which can be written in Dockerfile.
 
@@ -482,6 +495,8 @@ Following screenshot displays REST endpoint which throws exception. Same URL is 
 ##### Which is the command to inspect size of each layer in created docker image?
 
 docker image history <image-name>
+
+![screenshot82](screenshot82.PNG)
 
 ##### Which could be points to optimize docker images?
 
@@ -637,11 +652,46 @@ The attach option also allows multiple connections to view the same container an
 
 Docker attach command is used to attach our terminal to a running container to control I/O operations.
 
+**Please perform following steps to better understand attach command:**
+- **sudo docker run -itd --name busybox busybox /bin/sh** => this command will spawn a container in background and return container id. Container will keep running.
+- **sudo docker top busybox** => this command will print process and parent process id for this container
+- **sudo docker attach busybox** => this command will create a pipeline between current terminal and container for standard input/output/error. whatever we will type now in current terminal, it is like typing inside container. similarly, if there is logs getting printed inside container then those will be streamed to current terminal. After attaching to container, if you run any command then it might create new process.
+- **type CTRL-P and CTRL-Q** => you will come out of container although container will still be running.
+
+![screenshot84](screenshot84.PNG)
+![screenshot85](screenshot85.PNG)
+![screenshot86](screenshot86.PNG)
+![screenshot87](screenshot87.PNG)
+![screenshot88](screenshot88.PNG)
+![screenshot89](screenshot89.PNG)
+
+![screenshot90](screenshot90.PNG)
+
+**Another benefit is like starting spring boot web application** in a container and then attach to running container immediately. As soon as attacment is successful then all console logs will be streamed to current terminal.
+
 ##### Why to run containers in interactive mode?
 
 Docker allows you to run a container in interactive mode. This means you can execute commands inside the container while it is still running.
 
-Always use -it option if you want to run docker containers in interactive mode.
+**Always use -it option if you want to run docker containers in interactive mode.**
+
+##### What is the benefit of using docker exec command?
+
+**Please perform following steps to better understand attach command:**
+- **sudo docker run -itd --name busybox busybox /bin/sh** => this command will spawn a container in background and return container id. Container will keep running.
+- **sudo docker top busybox** => this command will print process and parent process id for this container
+- **sudo docker exec -it busybox /bin/sh** => this command will create new process inside container environment without disturbing existing running process inside container.
+
+![screenshot91](screenshot91.PNG)
+
+**Overall**
+
+- If want to try something new inside container environment without disturbing running container then **exec** command can be used.
+- If want to check what is going on inside running container then **attach** command is more useful.
+
+##### What is the command to check running processes inside container environment?
+
+sudo docker top \<container-name\>
 
 ##### Give some examples of docker-compose
 
