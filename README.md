@@ -826,6 +826,40 @@ If we ping this IP from the closed container, the IP is unreachable. This contai
 2. However, this network model won’t be a good choice if the network or Internet connection is required. For example, if the application requires making HTTP requests to the outside world.
 3. This isolated network suites well where the container requires the maximum level of network security and network access is not necessary.  
 
+#####  which are the most widely used maven plugin to create docker images currently?
+
+Please refer: https://medium.com/@marcus_j/maven-plugins-for-docker-7bc34dfe0f0
+
+- fabric8’s docker-maven-plugin
+
+![screenshot92](screenshot92.PNG)
+
+- Spotify’s docker-maven-plugin
+
+![screenshot93](screenshot93.PNG)
+
+- Spotify’s dockerfile-maven
+
+![screenshot94](screenshot94.PNG)
+
+![screenshot95](screenshot95.PNG)
+
+![screenshot96](screenshot96.PNG)
+
+#####  How to cache maven dependencies while building docker image?
+
+- Problem with following docker file is that every time image is built, maven dependencies will be downloaded. Even if there is no change in pom.xml file then also all dependencies will be downloaded.
+
+![screenshot97](screenshot97.PNG)
+
+- following is one of ways by which this problem can be rectified. Here, only pom.xml is first copied in build context and then maven offline dependency goal will resolve all the dependencies.
+
+![screenshot98](screenshot98.PNG)
+
+
+
+
+
 
 
 
